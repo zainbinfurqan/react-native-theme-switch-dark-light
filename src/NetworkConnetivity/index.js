@@ -15,6 +15,14 @@ function NetworkConnectivity(props) {
         });
     }
 
+    useEffect(() => {
+        async function fetch() {
+            let response = await fetch();
+            return response;
+        }
+        fetch()
+    })
+
 
 
     return (

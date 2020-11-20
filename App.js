@@ -44,6 +44,10 @@ import HousingSocity from './src/HousingSocity'
 import ThemeToggle from './src/ThemeToggle/Home'
 import { Provider } from 'react-redux'
 import store from './src/redux'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from './src/deeplinking/Pages/Home'
+import Users from './src/deeplinking/Pages/Users'
 
 const images = [
   {
@@ -55,10 +59,29 @@ const images = [
 ]
 
 
+const Stack = createStackNavigator();
+
+const config = {
+  screens: {
+    Home: 'Home',
+    Users: 'Users',
+  },
+};
+
+const linking = {
+  prefixes: ['https://mychat.com', 'mychat://'],
+  config,
+}
 
 const App = () => {
   return (
     <>
+      <NavigationContainer linking={linking}>
+        <Stack.Navigator >
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Users" component={Users} />
+        </Stack.Navigator>
+      </NavigationContainer>
       {/* <View style={{ borderWidth: 5 }}> */}
       {/* <ImageZoom cropWidth={Dimensions.get('window').width}
         cropHeight={Dimensions.get('window').height}
@@ -84,9 +107,10 @@ const App = () => {
       {/* <Modal visible={true} transparent={true}>
         <ImageViewer style={{ height: 100, width: '100%' }} imageUrls={images} />
       </Modal> */}
-      <Provider store={store}>
+      {/* <Provider store={store}>
         <ThemeToggle />
-      </Provider>
+      </Provider> */}
+
       {/* </View> */}
       {/* <Ticket /> */}
       {/* <StatusBar barStyle="dark-content" />
