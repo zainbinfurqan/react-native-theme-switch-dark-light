@@ -64,7 +64,12 @@ const Stack = createStackNavigator();
 const config = {
   screens: {
     Home: 'Home',
-    Users: 'Users',
+    Users: {
+      path: 'Users/:id',
+      params: {
+        id: null
+      }
+    },
   },
 };
 
